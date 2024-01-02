@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  gb-scraping-webpi:
+    image: genocs/gb-scraping-webapi:1.0.0
+    ports:
+      - 5099:5400
+
+    networks:
+      - genocs
+    # network_mode: host
+    volumes:
+      - gb-scraping:/root
+
+networks:
+  genocs:
+    name: genocs-network
+    external: true
+
+volumes:
+  gb-scraping:
+    driver: local
