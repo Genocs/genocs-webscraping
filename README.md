@@ -70,7 +70,6 @@ docker build -t genocs/gb-scraping-webapi:latest -t genocs/gb-scraping-webapi:1.
 docker run --name gb-scraping-webapi-container -p 5400:5400 genocs/gb-scraping-webapi:1.0.0
 docker compose up
 ```
-```
 
 ## License
 
