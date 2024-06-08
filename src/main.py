@@ -1,4 +1,5 @@
 import scraping_global_blue
+import scraping_planet
 from flask import Flask
 from gevent.pywsgi import WSGIServer
 
@@ -11,9 +12,17 @@ def hello():
 
 
 @app.route('/check_gb_tf_form/<docId>/<purchaseAmount>')
-def check_document(docId=None, purchaseAmount=None):
+def check_gb_document(docId=None, purchaseAmount=None):
     scraping = scraping_global_blue.ScrapingBlobalBlue()
     result = scraping.run_scraping(docId=docId, purchaseAmount=purchaseAmount)
+    print(result)
+    return result
+
+
+@app.route('/check_planet_tf_form/<docId>')
+def check_planet_document(docId=None):
+    scraping = scraping_planet.ScrapingPlanet()
+    result = scraping.run_scraping(docId=docId)
     print(result)
     return result
 
