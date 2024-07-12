@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # Debug/Development
     with app.app_context():
         db.create_all()
-    app.run(debug=True, host="0.0.0.0", port="5400")
+    app.run(debug=True, host='0.0.0.0', port=5400)
     # Production
     # http_server = WSGIServer(('', 5400), app)
     # http_server.serve_forever()

@@ -24,7 +24,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Successful operation.",
             "schema": {
               "type": "object",
               "properties": {

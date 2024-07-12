@@ -58,7 +58,8 @@ Tested with:
 ```bash
 pip install -r requirements.txt
 pip install --upgrade gevent
-python src/main.py
+cd ./src
+python main.py
 ```
 
 
@@ -66,8 +67,8 @@ python src/main.py
 ## Build Docker Image
 
 ```bash
-docker build -t genocs/gb-scraping-webapi:latest -t genocs/gb-scraping-webapi:1.0.0 .
-docker run --name gb-scraping-webapi-container -p 5400:5400 genocs/gb-scraping-webapi:1.0.0
+docker build -t genocs/scraping-webapi:latest -t genocs/scraping-webapi:1.0.0 .
+docker run --name scraping-webapi-container -p 5400:5400 genocs/scraping-webapi:1.0.0
 docker compose up
 ```
 
