@@ -70,6 +70,8 @@ python main.py
 docker build -t genocs/scraping-webapi:latest -t genocs/scraping-webapi:1.0.0 .
 docker run --name scraping-webapi-container -p 5400:5400 genocs/scraping-webapi:1.0.0
 docker compose up
+docker push genocs/scraping-webapi:1.0.0
+docker push genocs/scraping-webapi:latest
 ```
 
 ## License
