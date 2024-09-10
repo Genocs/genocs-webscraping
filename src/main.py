@@ -4,6 +4,8 @@ from flask import Flask, jsonify
 from gevent.pywsgi import WSGIServer
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import Mapped, DeclarativeBase, mapped_column
+
 from flask_restful import Resource, Api
 from flask_swagger_ui import get_swaggerui_blueprint
 import json
@@ -11,13 +13,60 @@ import json
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+
+# Set up the Restful API
 api = Api(app)
 
+"""
+The base class for the database model
+"""
+class Base(DeclarativeBase):
+    def __init__(self):
+        pass
 
-@app.route('/')
-def hello():
-    return 'Welcome to Web Scraping API!'
+    def __repr__(self):
+        return f'<Base>'
+
+
+
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
+
+class User(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(80), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=False, nullable=False)
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def __repr__(self):
+        return f'<User {self.name}>'
+
+
+"""
+The home controller. It will return a welcome message.
+Please move to a separate file if the controller is too large.
+"""
+class HomeController(Resource):
+    def get(self):
+
+        user = User(
+            name='test',
+            email='test@test.it'
+        )
+        db.session.add(user)
+        db.session.commit()
+        print(User.query.all())
+
+        return 'Welcome to Web Scraping API!'
+
+
+
+api.add_resource(HomeController, '/')
 
 
 @app.route('/check_gb_tf_form/<docId>/<purchaseAmount>')
@@ -61,10 +110,14 @@ The entry point
 Warning: Use 0.0.0.0 instead of 127.0.0.1 to avoid issue when use docker container   
 """
 if __name__ == '__main__':
-    # Debug/Development
+
+    # Create the database
     with app.app_context():
         db.create_all()
+
+    # Debug/Development
     app.run(debug=True, host='0.0.0.0', port=5400)
+
     # Production
     # http_server = WSGIServer(('', 5400), app)
     # http_server.serve_forever()

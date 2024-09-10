@@ -63,6 +63,19 @@ python main.py
 ```
 
 
+# Description
+
+This project is usign Flask along with other libraries.
+- [flask-restful](https://flask-restful.readthedocs.io/)
+
+- [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [requests](https://docs.python-requests.org/en/master/)
+- [flask-sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/)
+
+
+
+
+
 
 ## Build Docker Image
 
