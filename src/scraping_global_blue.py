@@ -70,8 +70,9 @@ class ScrapingBlobalBlue:
                 'status': results[0][1],
                 'shop': results[0][0],
                 'purchaseAmount': re.sub(r'[A-Z\s+]', '', results[2][1]),
-                'currency': re.sub(r'[0-9\.\s+]', '', results[2][1]),
-                'refund': re.sub(r'[A-Z\s+]', '', results[5][1]),
+                'purchaseCurrency': re.sub(r'[0-9\.,\s+]', '', results[2][1]),
+                'refundAmount': re.sub(r'[A-Z\s+]', '', results[5][1]),
+                'refundCurrency': re.sub(r'[0-9\.,\s+]', '', results[5][1]),
                 'date': results[3][1],
                 'address': results[4][1]
             }

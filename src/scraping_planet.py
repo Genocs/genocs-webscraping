@@ -16,9 +16,6 @@ class ScrapingPlanet:
                       response.status_code)
                 return []
 
-
-
-
             return response.content
 
         except Exception as e:
