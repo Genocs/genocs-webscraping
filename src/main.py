@@ -1,5 +1,6 @@
 import scraping_global_blue
 import scraping_planet
+import scraping_langhevini
 from flask import Flask, jsonify
 from gevent.pywsgi import WSGIServer
 
@@ -81,6 +82,13 @@ def check_gb_document(docId=None, purchaseAmount=None):
 def check_planet_document(docId=None):
     scraping = scraping_planet.ScrapingPlanet()
     result = scraping.run_scraping(docId=docId)
+    print(result)
+    return result
+
+@app.route('/fetch_langhevini/<page>')
+def check_langhevini_document(page=None):
+    scraping = scraping_langhevini.ScrapingLanghevini()
+    result = scraping.run_scraping(page=page)
     print(result)
     return result
 
