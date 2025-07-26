@@ -35,6 +35,6 @@ jobs:
 
       - name: Build and push image to Dockerhub
         run: |
-          docker build -f Dockerfile -t genocs/gb-scraping-webapi:${{ github.event.inputs.version }} -t genocs/gb-scraping-webapi:latest .
-          docker push genocs/gb-scraping-webapi:${{ github.event.inputs.version }}
-          docker push genocs/gb-scraping-webapi:latest
+          docker build -f Dockerfile -t genocs/scraping-webapi:${{ github.event.inputs.version }} -t genocs/scraping-webapi:latest .
+          docker push genocs/scraping-webapi:${{ github.event.inputs.version }}
+          docker push genocs/scraping-webapi:latest
